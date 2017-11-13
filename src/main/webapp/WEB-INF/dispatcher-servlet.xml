@@ -24,4 +24,24 @@
         </property>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    
+    <bean id="uslugaDao" class="com.it355.jovanastricic.dao.impl.UslugaDaoImpl" />
+    
+    <bean id="logAspect" class="com.it355.jovanastricic.aspect.InterceptorLog" />
+    <bean id="logPointcutAdvisor"
+      class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="logAspect" />
+        <property name="mappedName">
+            <value>*</value>
+        </property>
+    </bean>
+    <bean id="testServiceProxy"
+      class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="uslugaDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>logPointcutAdvisor</value>
+            </list>
+        </property>
+    </bean>
 </beans>

@@ -5,6 +5,7 @@
  */
 package com.it355.jovanastricic;
 
+import com.it355.jovanastricic.dao.UslugaDao;
 import com.it355.jovanastricic.model.Usluga;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,22 @@ public class UslugaController {
     @Autowired
     private MessageSource messageSource;
 
+    @Autowired
+    private UslugaDao uslugaDao;
+
     @RequestMapping(value = "/usluga", method = RequestMethod.GET)
-    public ModelAndView student() {
+    public ModelAndView usluga() {
         System.out.println("Calling MessageSource");
         System.out.println(messageSource.getMessage("tip_usluga", null, new Locale("en-Latn-US")));
+     
+        System.out.println("Calling uslugaDao");
+        uslugaDao.addUsluga();
+        uslugaDao.addUslugaAround("Illegal argument");
+        try {
+            uslugaDao.addUslugaThrowException();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return new ModelAndView("addUsluga", "command", new Usluga());
     }
 
