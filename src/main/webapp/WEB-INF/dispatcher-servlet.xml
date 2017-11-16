@@ -2,11 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
           http://www.springframework.org/schema/context
- http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+ http://www.springframework.org/schema/context/spring-context-4.3.xsd
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
     <context:component-scan base-package="com.it355.jovanastricic" />
     
@@ -29,14 +32,14 @@
     
     <bean id="logAspect" class="com.it355.jovanastricic.aspect.InterceptorLog" />
     <bean id="logPointcutAdvisor"
-      class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+          class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
         <property name="advice" ref="logAspect" />
         <property name="mappedName">
             <value>*</value>
         </property>
     </bean>
     <bean id="testServiceProxy"
-      class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+          class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
         <property name="beanNames" value="uslugaDao" />
         <property name="interceptorNames">
             <list>
