@@ -7,27 +7,31 @@
     </head>
     <body>
         <h2>Unesite informacije o usluzi</h2>
-        <form:form method="POST" action="/JovanaStricic/addUsluga">
+        <form:form method="POST" action="${flowExecutionUrl}">
+            <input type="hidden" name="_eventId" value="performAdding">
+            <input type="hidden" name="_flowExecutionKey"
+                   value="${flowExecutionKey}" >
+            
             <table>
                 <tr>
                     <td><form:label path="tip_usluga"><spring:message code="tip_usluga"/></form:label></td>
-                    <td><form:input path="tip_usluga" /></td>
-                </tr>
-                <tr>
-                    <td><form:label path="naziv_usluga"><spring:message code="naziv_usluga"/></form:label></td>
-                    <td><form:input path="naziv_usluga" /></td>
-                </tr>
-                <tr>
-                    <td><form:label path="cena_usluga"><spring:message code="cena_usluga"/></form:label></td>
-                    <td><form:input path="cena_usluga" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" value="Dodaj"/>
-                    </td>
-                </tr>
-            </table>
-        </form:form>
-    </body>
+            <td><form:input path="tip_usluga" /></td>
+        </tr>
+        <tr>
+            <td><form:label path="naziv_usluga"><spring:message code="naziv_usluga"/></form:label></td>
+    <td><form:input path="naziv_usluga" /></td>
+</tr>
+<tr>
+    <td><form:label path="cena_usluga"><spring:message code="cena_usluga"/></form:label></td>
+<td><form:input path="cena_usluga" /></td>
+</tr>
+<tr>
+    <td colspan="2">
+        <input type="submit" value="Dodaj"/>
+    </td>
+</tr>
+</table>
+</form:form>
+</body>
 </html>
 <%@ include file="footer.jsp" %>
