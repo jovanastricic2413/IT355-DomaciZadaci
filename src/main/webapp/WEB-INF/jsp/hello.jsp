@@ -15,8 +15,7 @@
                     document.getElementById("logoutForm").submit();
                 }
             </script>
-            <c:if test="${pageContext.request.userPrincipal.name
-                          != null}">
+            <c:if test="${pageContext.request.userPrincipal.name!= null}">
                   <h2>
                       Your username is :
                       ${pageContext.request.userPrincipal.name} | <a

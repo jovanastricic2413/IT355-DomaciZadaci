@@ -5,23 +5,26 @@
  */
 package com.it355.jovanastricic.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jovana BGD
  */
-public class Usluga {
+@SuppressWarnings("serial")
+public class Usluga implements Serializable {
 
+    private int id_usluga;
     private String tip_usluga;
     private String naziv_usluga;
     private int cena_usluga;
 
-    public Usluga() {
+    public int getId_usluga() {
+        return id_usluga;
     }
 
-    public Usluga(String tip_usluga, String naziv_usluga, int cena_usluga) {
-        this.tip_usluga = tip_usluga;
-        this.naziv_usluga = naziv_usluga;
-        this.cena_usluga = cena_usluga;
+    public void setId_usluga(int id_usluga) {
+        this.id_usluga = id_usluga;
     }
 
     public String getTip_usluga() {
@@ -50,7 +53,6 @@ public class Usluga {
 
     @Override
     public String toString() {
-        return "Usluga{" + "tip_usluga=" + tip_usluga + ", naziv_usluga=" + naziv_usluga + ", cena_usluga=" + cena_usluga + '}';
+        return "Usluga{" + "id_usluga=" + id_usluga + ", tip_usluga=" + tip_usluga + ", naziv_usluga=" + naziv_usluga + ", cena_usluga=" + cena_usluga + '}';
     }
-
 }

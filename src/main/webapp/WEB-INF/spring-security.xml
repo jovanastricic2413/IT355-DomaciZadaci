@@ -4,9 +4,15 @@
              xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 http://www.springframework.org/schema/security
-http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+http://www.springframework.org/schema/security/spring-security.xsd">
+    
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/adduslugaa" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/addkorisnik" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/success" access="permitAll" method="POST" />
+        <intercept-url pattern="/failure" access="permitAll" method="POST" />
+        <intercept-url pattern="/loginFlow" access="permitAll" method="POST" />
         <access-denied-handler error-page="/403" />
         <form-login login-page="/login"
                     default-target-url="/"
@@ -20,7 +26,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="select username, password, enabled from users where username=?"
-                               authorities-by-username-query="select username, role from user_roles where username =? " />
+                               authorities-by-username-query="select username, role from user_roles join users on users.id_user = user_roles.id_user where username =? " />
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

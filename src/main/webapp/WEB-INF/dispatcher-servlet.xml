@@ -11,40 +11,12 @@
 http://www.springframework.org/schema/tx 
 http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-    <context:component-scan base-package="com.it355.jovanastricic" />
+    <context:component-scan base-package="com.it355.*" />
     
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
     
-    <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>/WEB-INF/lang/usluga</value>
-            </list>
-        </property>
-        <property name="defaultEncoding" value="UTF-8"/>
-    </bean>
     
-    <bean id="uslugaDao" class="com.it355.jovanastricic.dao.impl.UslugaDaoImpl" />
-    
-    <bean id="logAspect" class="com.it355.jovanastricic.aspect.InterceptorLog" />
-    <bean id="logPointcutAdvisor"
-          class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
-        <property name="advice" ref="logAspect" />
-        <property name="mappedName">
-            <value>*</value>
-        </property>
-    </bean>
-    <bean id="testServiceProxy"
-          class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-        <property name="beanNames" value="uslugaDao" />
-        <property name="interceptorNames">
-            <list>
-                <value>logPointcutAdvisor</value>
-            </list>
-        </property>
-    </bean>
 </beans>
