@@ -215,9 +215,21 @@
         
         <!-- Test -->
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        
+        <!-- Test -->
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.12</version>  <!-- 4.10 -->
             <scope>test</scope>
             <type>jar</type>
         </dependency>
@@ -253,6 +265,13 @@
     </dependencies>
 
     <build>
+        
+        <testResources>
+            <testResource>
+                <directory>${basedir}/src/main/resources</directory>
+            </testResource>
+        </testResources>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
